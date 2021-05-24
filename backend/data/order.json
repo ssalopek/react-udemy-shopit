@@ -1,0 +1,26 @@
+{
+    "itemsPrice": 2.75,
+    "taxPrice": 0.14,
+    "shippingPrice": 25,
+    "totalPrice": 27.89,
+    "orderItems": [
+        {
+            "product": "60ab89135195ac4d04d06646",
+            "name": "SanDisk Ultra 128GB SDXC UHS-I Memory Card up to 80MB/s",
+            "price": 250.99,
+            "image": "https://res.cloudinary.com/bookit/image/upload/v1608062030/products/dsvbpny402gelwugv2le.jpg",
+            "quantity": 1
+        }
+    ],
+    "shippingInfo": {
+        "address": "Radica Stjepana",
+        "city": "Osijek",
+        "phoneNumber": "0981234567",
+        "postalCode": "4200",
+        "country": "Croatia"
+    },
+    "paymentInfo": {
+        "id": "67r34g78fg83f4g87wgf89g",
+        "status": "Succeded"
+    }
+}
