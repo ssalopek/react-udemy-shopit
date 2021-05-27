@@ -17,6 +17,7 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 
 //Get all products from /api/v1/products?keyword=sandisk
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
+
   const resultsPerPage = 8;
   const productsCount = await Product.countDocuments();
 
@@ -29,13 +30,11 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
   let products = await apiFeatures.query;
 
-  setTimeout(() => {
-    res.status(200).json({
-      success: true,
-      productsCount,
-      products,
-    });
-  }, 2000);
+  res.status(200).json({
+    success: true,
+    productsCount,
+    products,
+  });
 });
 
 //Get single product details from /api/v1/product/:id

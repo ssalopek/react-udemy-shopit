@@ -1,26 +1,33 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
 
 import MetaData from "./layout/MetaData";
 import Product from "./product/Product";
+import Loader from "./layout/Loader";
 
 import { getProducts } from "../actions/productActions";
 
 const Home = () => {
   const dispatch = useDispatch();
 
+  const alert = useAlert();
+
   const { loading, products, productsCount, error } = useSelector(
     (state) => state.products
   );
 
   useEffect(() => {
+    if (error) {
+      return alert.error(error);
+    }
     dispatch(getProducts());
-  }, [dispatch]);
+  }, [dispatch, alert, error]);
 
   return (
     <Fragment>
       {loading ? (
-        <h1>Loading...</h1>
+        <Loader />
       ) : (
         <Fragment>
           <h1 id="products_heading">Latest Products</h1>
