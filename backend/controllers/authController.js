@@ -99,29 +99,28 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
 //Login user -> /api/v1/login
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
+    const { email, password } = req.body;
 
-    const {email, password} = req.body;
-
-    //Check if email and password is entered by user
-    if(!email || !password){
-        return next(new ErrorHandler('Please enter email and password'));
+    // Checks if email and password is entered by user
+    if (!email || !password) {
+        return next(new ErrorHandler('Please enter email & password', 400))
     }
 
-    //Find user in database
-    const user = await User.findOne({ email })
-            .select('+password') //because select value of password is by default 'false' (check models/user.js), .select() with + operator is needed
+    // Finding user in database
+    const user = await User.findOne({ email }).select('+password')
 
-    if(!user){
+    if (!user) {
         return next(new ErrorHandler('Invalid Email or Password', 401));
     }
 
-    //Check if password is correct or not
+    // Checks if password is correct or not
     const isPasswordMatched = await user.comparePassword(password);
-    if(!isPasswordMatched){
+
+    if (!isPasswordMatched) {
         return next(new ErrorHandler('Invalid Email or Password', 401));
     }
 
-    sendToken(user, 200, res);
+    sendToken(user, 200, res)
 })
 
 //Get currently logged in user detaild -> /api/v1/me

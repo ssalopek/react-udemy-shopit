@@ -13,8 +13,14 @@ const {
 
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
-//GET
-router.route('/products').get(isAuthenticatedUser, getProducts);
+/*TODO:
+GET routes must have isAuthenticatedUser property just like all routes. 
+But when is that included I get blocked in browser. 
+Works in postman because I can login/logout. But in browser I can't see list of products because I need to login first !!?? 
+Like WTF. This is silly "bug" and FIX IT LATER  !!!! */
+
+//GET ALL AND SINGLE
+router.route('/products').get(getProducts);
 router.route('/product/:id').get(getSingleProduct);
 
 //POST
