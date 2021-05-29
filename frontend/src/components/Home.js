@@ -17,12 +17,34 @@ const Range = createSliderWithTooltip(Slider.Range);
 const Home = ({ match }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([1, 1000]);
+  const [category, setCategory] = useState("");
+
+  const categories = [
+    "Electronics",
+    "Cameras",
+    "Laptops",
+    "Accessories",
+    "Headphones",
+    "Food",
+    "Books",
+    "Clothes/Shoes",
+    "Beauty/Health",
+    "Sports",
+    "Outdoor",
+    "Home",
+  ];
 
   const dispatch = useDispatch();
   const alert = useAlert();
 
-  const { loading, products, productsCount, error, resultsPerPage } =
-    useSelector((state) => state.products);
+  const {
+    loading,
+    products,
+    productsCount,
+    error,
+    resultsPerPage,
+    filteredProductsCount,
+  } = useSelector((state) => state.products);
 
   const keyword = match.params.keyword;
 
@@ -30,11 +52,16 @@ const Home = ({ match }) => {
     if (error) {
       return alert.error(error);
     }
-    dispatch(getProducts(keyword, currentPage, price));
-  }, [dispatch, alert, error, keyword, currentPage, price]);
+    dispatch(getProducts(keyword, currentPage, price, category));
+  }, [dispatch, alert, error, keyword, currentPage, price, category]);
 
   function setCurrentPageNo(pageNumber) {
     setCurrentPage(pageNumber);
+  }
+
+  let count = productsCount;
+  if (keyword) {
+    count = filteredProductsCount;
   }
 
   return (
@@ -67,6 +94,26 @@ const Home = ({ match }) => {
                         value={price}
                         onChange={(price) => setPrice(price)}
                       />
+
+                      <hr className="my-5" />
+
+                      <div className="mt-5">
+                        <h4 className="mb-3">Categories</h4>
+                        <ul className="pl-0">
+                          {categories.map((category) => (
+                            <li
+                              style={{
+                                cursor: "pointer",
+                                listStyleType: "none",
+                              }}
+                              key={category}
+                              onClick={() => setCategory(category)}
+                            >
+                              {category}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
 
@@ -87,7 +134,7 @@ const Home = ({ match }) => {
               )}
             </div>
           </section>
-          {resultsPerPage <= productsCount && (
+          {resultsPerPage <= count && (
             <div className="d-flex justify-content-center mt-5">
               <Pagination
                 activePage={currentPage}
