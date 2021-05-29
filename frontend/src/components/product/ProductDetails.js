@@ -32,19 +32,24 @@ const ProductDetails = ({ match }) => {
         <Loader />
       ) : (
         <Fragment>
+          <MetaData title={product.name} />
           <div className="row f-flex justify-content-around">
             <div className="col-12 col-lg-5 img-fluid" id="product_image">
               <Carousel pause="hover">
                 {product.images &&
-                  product.images.map((image) => (
-                    <Carousel.Item key={image.public_id}>
-                      <img
-                        className="d-block w-100"
-                        src={image.url}
-                        alt={product.title}
-                      ></img>
-                    </Carousel.Item>
-                  ))}
+                  product.images.map(
+                    (
+                      image //map through all images and give result by public_id
+                    ) => (
+                      <Carousel.Item key={image.public_id}>
+                        <img
+                          className="d-block w-100"
+                          src={image.url}
+                          alt={product.title}
+                        ></img>
+                      </Carousel.Item>
+                    )
+                  )}
               </Carousel>
             </div>
 
@@ -88,7 +93,13 @@ const ProductDetails = ({ match }) => {
               <hr />
 
               <p>
-                Status: <span id="stock_status" className={product.stock > 0 ? 'greenColor' : 'redColor'}>{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span>
+                Status:{" "}
+                <span
+                  id="stock_status"
+                  className={product.stock > 0 ? "greenColor" : "redColor"}
+                >
+                  {product.stock > 0 ? "In Stock" : "Out of Stock"}
+                </span>
               </p>
 
               <hr />
