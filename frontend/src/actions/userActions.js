@@ -5,9 +5,12 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   CLEAR_ERRORS,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
 } from "../constants/userConstants";
 
-//Login
+//Login user
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
@@ -36,9 +39,37 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
+//Register user
+export const register = (userData) => async (dispatch) => {
+  try {
+    dispatch({
+      type: REGISTER_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+
+    const { data } = await axios.post("/api/v1/register", userData, config);
+
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: data.user,
+    });
+    
+  } catch (error) {
+    dispatch({
+      type: REGISTER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
 //Clear errors
 export const clearErrors = () => async (dispatch) => {
-    dispatch({
-      type: CLEAR_ERRORS,
-    });
-  };
+  dispatch({
+    type: CLEAR_ERRORS,
+  });
+};
