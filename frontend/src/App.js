@@ -9,6 +9,7 @@ import { loadUser } from "./actions/userActions";
 import store from "./store";
 import Profile from "./components/user/Profile";
 import ProtectedRoute from "./components/route/ProtectedRoute";
+import UpdateProfile from './components/user/UpdateProfile';
 
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -29,8 +30,8 @@ function App() {
 
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/me" component={Profile} exact />
           <ProtectedRoute path="/me" component={Profile} exact />
+          <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
         </div>
 
         <Footer />
