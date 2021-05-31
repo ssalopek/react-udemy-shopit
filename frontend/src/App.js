@@ -2,10 +2,11 @@ import "./App.css";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Home from "./components/Home";
-import ProductDetails from './components/product/ProductDetails';
-import Login from './components/user/Login';
+import ProductDetails from "./components/product/ProductDetails";
+import Login from "./components/user/Login";
+import Register from "./components/user/Register";
 
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
           <Route path="/search/:keyword" component={Home} />
           <Route path="/product/:id" component={ProductDetails} exact />
 
-          <Route path="/login" component={Login}/>
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
         </div>
 
         <Footer />
