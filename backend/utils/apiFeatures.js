@@ -23,12 +23,13 @@ class APIFeatures {
         //Remove fields that are not needed when filtering by category
         const removeFields = ['keyword', 'limit', 'page'] //remove these fields
         removeFields.forEach(el => delete queryCopy[el]);
-        console.log(queryCopy);
+        //console.log(queryCopy);
 
         //Advanced filter for price
         let queryString = JSON.stringify(queryCopy)
         queryString = queryString.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`) //https://jsfiddle.net/c52z8ewr/ 
-        console.log(queryString); //that is console result you get here. Solution to catch that $ operator
+        //that is console result you get here. Solution to catch that $ operator
+        //console.log(queryString); 
 
         this.query = this.query.find(JSON.parse(queryString));
         return this;
