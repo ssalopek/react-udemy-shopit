@@ -7,7 +7,7 @@ import { login, clearErrors } from "../../actions/userActions";
 import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
 
-const Login = ({ history }) => {
+const Login = ({ history, location }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,14 +18,16 @@ const Login = ({ history }) => {
     (state) => state.auth
   );
 
+  const redirect = location.search ? location.search.split("=")[1] : "/";
+
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/");
+      history.push(redirect);
     }
 
     if (error) {
       alert.error(error);
-      dispatch(clearErrors);
+      dispatch(clearErrors());
     }
   }, [dispatch, alert, isAuthenticated, error, history]);
 

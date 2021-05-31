@@ -2,12 +2,7 @@ import React, { useEffect, Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 
-import {
-  updateProfile,
-  loadUser,
-  clearErrors,
-  updatePassword,
-} from "../../actions/userActions";
+import { clearErrors, updatePassword } from "../../actions/userActions";
 import MetaData from "../layout/MetaData";
 import { UPDATE_PASSWORD_RESET } from "../../constants/userConstants";
 
