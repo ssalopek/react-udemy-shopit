@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader";
+import MetaData from "../layout/MetaData";
 
 const Profile = () => {
   const { user, loading } = useSelector((state) => state.auth);
@@ -14,7 +14,7 @@ const Profile = () => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={"Your Profile"} />
+          <MetaData title={"Profile"} />
 
           <h2 className="mt-5 ml-5">My Profile</h2>
           <div className="row justify-content-around mt-5 user-info">
