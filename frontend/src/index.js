@@ -11,10 +11,10 @@ import { positions, transitions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 
 const options = {
+  position: positions.BOTTOM_CENTER,
   timeout: 5000,
-  positions: positions.BOTTOM_CENTER,
-  transitions: transitions.SCALE,
-};
+  transition: transitions.SCALE
+}
 
 ReactDOM.render(
   <Provider store={store}>
