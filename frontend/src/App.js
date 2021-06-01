@@ -15,12 +15,15 @@ import ForgotPassword from "./components/user/ForgotPassword";
 import NewPassword from "./components/user/NewPassword";
 
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
+
+  const { user, isAuthenticated, loading } = useSelector((state) => state.auth);
 
   return (
     <Router>
