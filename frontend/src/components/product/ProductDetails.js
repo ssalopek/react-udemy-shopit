@@ -6,6 +6,7 @@ import { Carousel } from "react-bootstrap";
 import { getProductDetails, clearErrors } from "../../actions/productActions";
 import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
+import { addItemToCart } from "../../actions/cartActions";
 
 //match is for getting id of product
 const ProductDetails = ({ match }) => {
@@ -44,6 +45,11 @@ const ProductDetails = ({ match }) => {
 
     const quantity = count.valueAsNumber - 1;
     setQuantity(quantity);
+  };
+
+  const addToCart = () => {
+    dispatch(addItemToCart(match.params.id, quantity));
+    alert.success("Item Added to Cart");
   };
 
   return (
@@ -116,6 +122,8 @@ const ProductDetails = ({ match }) => {
                 type="button"
                 id="cart_btn"
                 className="btn btn-primary d-inline ml-4"
+                onClick={addToCart}
+                disabled={product.stock === 0}
               >
                 Add to Cart
               </button>
