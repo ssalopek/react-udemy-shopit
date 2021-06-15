@@ -33,11 +33,13 @@ function App() {
   useEffect(() => {
     store.dispatch(loadUser());
 
-    async function getStripeApiKey() {
+    async function getStripApiKey() {
       const { data } = await axios.get("/api/v1/stripeapi");
+
       setStripeApiKey(data.stripeApiKey);
     }
-    getStripeApiKey();
+
+    getStripApiKey();
   }, []);
 
   const { user, isAuthenticated, loading } = useSelector((state) => state.auth);
@@ -54,11 +56,11 @@ function App() {
           <ProtectedRoute path="/shipping" component={Shipping} exact />
           <ProtectedRoute path="/order/confirm" component={ConfirmOrder} />
 
-          {stripeApiKey &&
+          {stripeApiKey && (
             <Elements stripe={loadStripe(stripeApiKey)}>
               <ProtectedRoute path="/payment" component={Payment} />
             </Elements>
-          }
+          )}
 
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />

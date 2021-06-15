@@ -8,6 +8,11 @@ body {
   overflow-x: hidden;
 }
 
+.test-card{
+  text-align: center;
+  color: red;
+}
+
 /* Scroll Bar */
 
 ::-webkit-scrollbar-track {

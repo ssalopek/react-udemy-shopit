@@ -102,7 +102,7 @@ const Home = ({ match }) => {
                         <h4 className="mb-3">Categories</h4>
                         <ul className="pl-0">
                           {categories.map((category) => (
-                            <li
+                            <li key={category}
                               style={{
                                 cursor: "pointer",
                                 listStyleType: "none",
