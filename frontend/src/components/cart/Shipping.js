@@ -15,7 +15,7 @@ const Shipping = ({ history }) => {
   const [city, setCity] = useState(shippingInfo.city);
   const [postalCode, setPostalCode] = useState(shippingInfo.postalCode);
   const [phoneNumber, setPhoneNumber] = useState(shippingInfo.phoneNumber);
-  const [county, setCountry] = useState(shippingInfo.county);
+  const [country, setCountry] = useState(shippingInfo.county);
 
   const dispatch = useDispatch();
 
@@ -23,9 +23,9 @@ const Shipping = ({ history }) => {
     e.preventDefault();
 
     dispatch(
-      saveShippingInfo({ address, city, postalCode, phoneNumber, county })
+      saveShippingInfo({ address, city, postalCode, phoneNumber, country })
     );
-    history.push("/confirm");
+    history.push("/order/confirm");
   };
 
   return (
@@ -89,7 +89,7 @@ const Shipping = ({ history }) => {
               <select
                 id="country_field"
                 className="form-control"
-                value={county}
+                value={country}
                 onChange={(e) => setCountry(e.target.value)}
                 required
               >
