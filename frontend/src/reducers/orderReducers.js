@@ -12,16 +12,19 @@ export const newOrderReducer = (state = {}, action) => {
         ...state,
         loading: true,
       };
+
     case CREATE_ORDER_SUCCESS:
       return {
         loading: false,
         order: action.payload,
       };
+
     case CREATE_ORDER_FAIL:
       return {
         loading: false,
         error: action.payload,
       };
+
     case CLEAR_ERRORS:
       return {
         ...state,
