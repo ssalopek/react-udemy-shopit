@@ -23,7 +23,13 @@ const reducer = combineReducers({
 });
 
 //contains all data I want to put into the state, before loading application
-let initialState = {};
+let initialState = {
+  cart: {
+    cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
+  },
+};
 
 //contains all middleware I will/want use
 const middleware = [thunk];
