@@ -27,7 +27,7 @@ const ConfirmOrder = ({ history }) => {
     };
     //sessionStorage vs localStorage -> sessionStorage will erase data on refresh/closing tab/browser and local will not
     sessionStorage.setItem("orderInfor", JSON.stringify(data));
-    history.push("/");
+    history.push("/payment");
   };
 
   return (
