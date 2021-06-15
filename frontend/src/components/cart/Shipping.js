@@ -4,6 +4,7 @@ import { countries } from "countries-list";
 
 import MetaData from "../layout/MetaData";
 import { saveShippingInfo } from "../../actions/cartActions";
+import CheckoutSteps from "./CheckoutSteps";
 
 const Shipping = ({ history }) => {
   const countriesList = Object.values(countries);
@@ -30,6 +31,7 @@ const Shipping = ({ history }) => {
   return (
     <Fragment>
       <MetaData title={"Shipping Info"} />
+      <CheckoutSteps shipping />
       <div className="row wrapper">
         <div className="col-10 col-lg-5">
           <form className="shadow-lg" onSubmit={submitHandler}>
