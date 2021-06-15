@@ -17,13 +17,22 @@ import Cart from "./components/cart/Cart";
 import Shipping from "./components/cart/Shipping";
 import ConfirmOrder from "./components/cart/ConfirmOrder";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import axios from "axios";
 
 function App() {
+  const [stripeApiKey, setStripeApiKey] = useState("");
+
   useEffect(() => {
     store.dispatch(loadUser());
+
+    async function getStripeApiKey() {
+      const { data } = await axios.get("/api/v1/stripeapi");
+      setStripeApiKey(data.stripeApiKey);
+    }
+    getStripeApiKey();
   }, []);
 
   const { user, isAuthenticated, loading } = useSelector((state) => state.auth);
