@@ -18,6 +18,7 @@ import Shipping from "./components/cart/Shipping";
 import ConfirmOrder from "./components/cart/ConfirmOrder";
 import Payment from "./components/cart/Payment";
 import OrderSuccess from "./components/cart/OrderSuccess";
+import ListOrders from "./components/order/ListOrders";
 
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -75,6 +76,7 @@ function App() {
             component={UpdatePassword}
             exact
           />
+          <ProtectedRoute path="/orders/me" component={ListOrders} exact />
         </div>
 
         <Footer />

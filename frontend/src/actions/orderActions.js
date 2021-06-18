@@ -10,7 +10,7 @@ import {
 
 import axios from "axios";
 
-export const createOrder = (order) => async (dispatch) => {
+export const createOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch({ type: CREATE_ORDER_REQUEST });
 
@@ -46,7 +46,6 @@ export const myOrders = (id) => async (dispatch) => {
       type: MY_ORDERS_SUCCESS,
       payload: data.orders,
     });
-
   } catch (error) {
     dispatch({
       type: MY_ORDERS_FAIL,
