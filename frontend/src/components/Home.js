@@ -1,6 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useAlert } from "react-alert";
+import React, { Fragment, useState, useEffect } from "react";
 import Pagination from "react-js-pagination";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -9,6 +7,8 @@ import MetaData from "./layout/MetaData";
 import Product from "./product/Product";
 import Loader from "./layout/Loader";
 
+import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
 import { getProducts } from "../actions/productActions";
 
 const { createSliderWithTooltip } = Slider;
@@ -35,14 +35,14 @@ const Home = ({ match }) => {
     "Home",
   ];
 
-  const dispatch = useDispatch();
   const alert = useAlert();
+  const dispatch = useDispatch();
 
   const {
     loading,
     products,
-    productsCount,
     error,
+    productsCount,
     resultsPerPage,
     filteredProductsCount,
   } = useSelector((state) => state.products);
@@ -53,6 +53,7 @@ const Home = ({ match }) => {
     if (error) {
       return alert.error(error);
     }
+
     dispatch(getProducts(keyword, currentPage, price, category, rating));
   }, [dispatch, alert, error, keyword, currentPage, price, category, rating]);
 
@@ -67,12 +68,14 @@ const Home = ({ match }) => {
 
   return (
     <Fragment>
-      <MetaData title={"HomePage"} />
       {loading ? (
         <Loader />
       ) : (
         <Fragment>
+          <MetaData title={"Buy Best Products Online"} />
+
           <h1 id="products_heading">Latest Products</h1>
+
           <section id="products" className="container mt-5">
             <div className="row">
               {keyword ? (
@@ -100,9 +103,10 @@ const Home = ({ match }) => {
 
                       <div className="mt-5">
                         <h4 className="mb-3">Categories</h4>
+
                         <ul className="pl-0">
                           {categories.map((category) => (
-                            <li key={category}
+                            <li
                               style={{
                                 cursor: "pointer",
                                 listStyleType: "none",
@@ -120,6 +124,7 @@ const Home = ({ match }) => {
 
                       <div className="mt-5">
                         <h4 className="mb-3">Ratings</h4>
+
                         <ul className="pl-0">
                           {[5, 4, 3, 2, 1].map((star) => (
                             <li
@@ -147,21 +152,20 @@ const Home = ({ match }) => {
 
                   <div className="col-6 col-md-9">
                     <div className="row">
-                      {products &&
-                        products.map((product) => (
-                          <Product key={product.id} product={product} col={4} />
-                        ))}
+                      {products.map((product) => (
+                        <Product key={product._id} product={product} col={4} />
+                      ))}
                     </div>
                   </div>
                 </Fragment>
               ) : (
-                products &&
                 products.map((product) => (
-                  <Product key={product.id} product={product} col={3} />
+                  <Product key={product._id} product={product} col={3} />
                 ))
               )}
             </div>
           </section>
+
           {resultsPerPage <= count && (
             <div className="d-flex justify-content-center mt-5">
               <Pagination
