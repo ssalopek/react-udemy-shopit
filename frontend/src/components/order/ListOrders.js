@@ -20,7 +20,7 @@ const ListOrders = () => {
 
     if (error) {
       alert.error(error);
-      dispatch(clearErrors);
+      dispatch(clearErrors());
     }
   }, [dispatch, alert, error]);
 
@@ -55,11 +55,12 @@ const ListOrders = () => {
       ],
       rows: [],
     };
+
     orders.forEach((order) => {
       data.rows.push({
         id: order._id,
         numOfItems: order.orderItems.length,
-        amount: `${orders.totalPrice}`,
+        amount: `$${order.totalPrice}`,
         status:
           order.orderStatus &&
           String(order.orderStatus).includes("Delivered") ? (
@@ -74,6 +75,7 @@ const ListOrders = () => {
         ),
       });
     });
+
     return data;
   };
 
