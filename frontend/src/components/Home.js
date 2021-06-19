@@ -3,7 +3,6 @@ import Pagination from "react-js-pagination";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-import MetaData from "./layout/MetaData";
 import Product from "./product/Product";
 import Loader from "./layout/Loader";
 
@@ -72,7 +71,6 @@ const Home = ({ match }) => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={"Buy Best Products Online"} />
 
           <h1 id="products_heading">Latest Products</h1>
 

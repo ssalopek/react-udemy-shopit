@@ -33,6 +33,7 @@ import Shipping from "./components/cart/Shipping";
 //Admin
 import Dashboard from "./components/admin/Dashboard";
 import ProductsList from "./components/admin/ProductsList";
+import NewProduct from "./components/admin/NewProduct";
 
 //Payment
 import Payment from "./components/cart/Payment";
@@ -104,8 +105,14 @@ function App() {
           component={ProductsList}
           exact
         />
+        <ProtectedRoute
+          path="/admin/product"
+          isAdmin={true}
+          component={NewProduct}
+          exact
+        />
 
-        <Footer />
+        {!loading && user.role !== "admin" && <Footer />}
       </div>
     </Router>
   );
