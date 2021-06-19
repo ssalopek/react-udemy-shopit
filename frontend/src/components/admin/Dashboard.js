@@ -1,11 +1,28 @@
 import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader";
 import Sidebar from "../admin/Sidebar";
 
+import { getAdminProducts } from "../../actions/productActions";
+
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.products);
+  
+  let outOfStock = 0;
+  products.forEach(product => {
+    if(product.stock === 0){
+      outOfStock += 1;
+    }
+  })
+
+  useEffect(() => {
+    dispatch(getAdminProducts());
+  }, [dispatch]);
+
   return (
     <Fragment>
       <div classNameName="row">
@@ -34,7 +51,7 @@ const Dashboard = () => {
                 <div className="card-body">
                   <div className="text-center card-font-size">
                     Products
-                    <br /> <b>56</b>
+                    <br /> <b>{products && products.length}</b>
                   </div>
                 </div>
                 <Link
@@ -94,7 +111,7 @@ const Dashboard = () => {
                 <div className="card-body">
                   <div className="text-center card-font-size">
                     Out of Stock
-                    <br /> <b>4</b>
+                    <br /> <b>{outOfStock}</b>
                   </div>
                 </div>
               </div>

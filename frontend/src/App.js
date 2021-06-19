@@ -32,6 +32,7 @@ import Shipping from "./components/cart/Shipping";
 
 //Admin
 import Dashboard from "./components/admin/Dashboard";
+import ProductsList from "./components/admin/ProductsList";
 
 //Payment
 import Payment from "./components/cart/Payment";
@@ -95,6 +96,12 @@ function App() {
           path="/dashboard"
           isAdmin={true}
           component={Dashboard}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/products"
+          isAdmin={true}
+          component={ProductsList}
           exact
         />
 

@@ -10,41 +10,52 @@ import {
   NEW_REVIEW_SUCCESS,
   NEW_REVIEW_RESET,
   NEW_REVIEW_FAIL,
+  ADMIN_PRODUCTS_REQUEST,
+  ADMIN_PRODUCTS_SUCCESS,
+  ADMIN_PRODUCTS_FAIL,
 } from "../constants/productConstants";
 
 export const productsReducer = (state = { products: [] }, action) => {
   switch (action.type) {
-    case ALL_PRODUCTS_REQUEST:
-      return {
-        loading: true,
-        products: [],
-      };
+      case ALL_PRODUCTS_REQUEST:
+      case ADMIN_PRODUCTS_REQUEST:
+          return {
+              loading: true,
+              products: []
+          }
 
-    case ALL_PRODUCTS_SUCCESS:
-      return {
-        loading: false,
-        products: action.payload.products,
-        productsCount: action.payload.productsCount,
-        resultsPerPage: action.payload.resultsPerPage,
-        filteredProductsCount: action.payload.filteredProductsCount,
-      };
+      case ALL_PRODUCTS_SUCCESS:
+          return {
+              loading: false,
+              products: action.payload.products,
+              productsCount: action.payload.productsCount,
+              resPerPage: action.payload.resPerPage,
+              filteredProductsCount: action.payload.filteredProductsCount
+          }
 
-    case ALL_PRODUCTS_FAIL:
-      return {
-        loading: false,
-        error: action.payload,
-      };
+      case ADMIN_PRODUCTS_SUCCESS:
+          return {
+              loading: false,
+              products: action.payload
+          }
 
-    case CLEAR_ERRORS:
-      return {
-        ...state,
-        error: null,
-      };
+      case ALL_PRODUCTS_FAIL:
+      case ADMIN_PRODUCTS_FAIL:
+          return {
+              loading: false,
+              error: action.payload
+          }
 
-    default:
-      return state;
+      case CLEAR_ERRORS:
+          return {
+              ...state,
+              error: null
+          }
+
+      default:
+          return state;
   }
-};
+}
 
 export const productDetailsReducer = (state = { product: {} }, action) => {
   switch (action.type) {

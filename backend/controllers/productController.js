@@ -53,6 +53,16 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+//ADMIN Get all products from /api/v1/admin/products
+exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
+  const products = await Product.find();
+
+  res.status(200).json({
+    success: true,
+    products,
+  });
+});
+
 //Update product and pass to url like /api/v1/admin/product/:id
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
