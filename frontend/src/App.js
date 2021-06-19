@@ -68,11 +68,12 @@ function App() {
           <Route path="/" component={Home} exact />
           <Route path="/search/:keyword" component={Home} />
           <Route path="/product/:id" component={ProductDetails} exact />
-          <Route path="/cart" component={Cart} exact />
-          <ProtectedRoute path="/shipping" component={Shipping} exact />
-          <ProtectedRoute path="/order/confirm" component={ConfirmOrder} />
-          <ProtectedRoute path="/success" component={OrderSuccess} />
 
+          <Route path="/cart" component={Cart} exact />
+          <ProtectedRoute path="/shipping" component={Shipping} />
+          <ProtectedRoute path="/confirm" component={ConfirmOrder} exact />
+          <ProtectedRoute path="/success" component={OrderSuccess} />
+          
           {stripeApiKey && (
             <Elements stripe={loadStripe(stripeApiKey)}>
               <ProtectedRoute path="/payment" component={Payment} />
@@ -90,9 +91,11 @@ function App() {
             component={UpdatePassword}
             exact
           />
+
           <ProtectedRoute path="/orders/me" component={ListOrders} exact />
           <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
         </div>
+
         <ProtectedRoute
           path="/dashboard"
           isAdmin={true}
@@ -112,7 +115,7 @@ function App() {
           exact
         />
 
-        {!loading && user.role !== "admin" && <Footer />}
+        {!loading && (!isAuthenticated || user.role !== "admin") && <Footer />}
       </div>
     </Router>
   );
