@@ -6,11 +6,11 @@ This project was created with React [COURSE](https://www.udemy.com/course/mern-s
 
 ### USED TOOLS:
 
- **React** - frontend
-** Node.js** - backend runtime environment
- **Express** - backend framework
- **MongoDB** - database
- **Redux** - state managment
+**React** - frontend <br />
+**Node.js** - backend runtime environment <br />
+**Express** - backend framework <br />
+**MongoDB** - database <br />
+**Redux** - state managment
 
 ### Implemented features
 + React router and routing
