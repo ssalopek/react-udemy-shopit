@@ -10,7 +10,6 @@ import {
   PRODUCT_DETAILS_FAIL,
   NEW_REVIEW_REQUEST,
   NEW_REVIEW_SUCCESS,
-  NEW_REVIEW_RESET,
   NEW_REVIEW_FAIL,
 } from "../constants/productConstants";
 
