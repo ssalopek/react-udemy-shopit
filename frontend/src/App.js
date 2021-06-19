@@ -34,6 +34,7 @@ import Shipping from "./components/cart/Shipping";
 import Dashboard from "./components/admin/Dashboard";
 import ProductsList from "./components/admin/ProductsList";
 import NewProduct from "./components/admin/NewProduct";
+import UpdateProduct from "./components/admin/UpdateProduct";
 
 //Payment
 import Payment from "./components/cart/Payment";
@@ -73,7 +74,7 @@ function App() {
           <ProtectedRoute path="/shipping" component={Shipping} />
           <ProtectedRoute path="/confirm" component={ConfirmOrder} exact />
           <ProtectedRoute path="/success" component={OrderSuccess} />
-          
+
           {stripeApiKey && (
             <Elements stripe={loadStripe(stripeApiKey)}>
               <ProtectedRoute path="/payment" component={Payment} />
@@ -112,6 +113,12 @@ function App() {
           path="/admin/product"
           isAdmin={true}
           component={NewProduct}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/product/:id"
+          isAdmin={true}
+          component={UpdateProduct}
           exact
         />
 
