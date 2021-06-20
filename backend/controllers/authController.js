@@ -180,8 +180,8 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
     newUserData.avatar = {
       public_id: result.public_id,
-      url: result.secure_url
-    }
+      url: result.secure_url,
+    };
   }
 
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
@@ -261,6 +261,10 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
   if (!user) {
     return next(new ErrorHandler(`User not found with id: ${req.params.id}`));
   }
+
+  //Remove image from cloudinary
+  const image_id = user.avatar.public_id;
+  await cloudinary.v2.uploader.destroy(image_id);
 
   await user.remove();
 
