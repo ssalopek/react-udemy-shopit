@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { countries } from "countries-list";
 
 import MetaData from "../layout/MetaData";
-import { saveShippingInfo } from "../../actions/cartActions";
 import CheckoutSteps from "./CheckoutSteps";
+
+import { useDispatch, useSelector } from "react-redux";
+import { saveShippingInfo } from "../../actions/cartActions";
 
 const Shipping = ({ history }) => {
   const countriesList = Object.values(countries);
@@ -14,24 +15,24 @@ const Shipping = ({ history }) => {
   const [address, setAddress] = useState(shippingInfo.address);
   const [city, setCity] = useState(shippingInfo.city);
   const [postalCode, setPostalCode] = useState(shippingInfo.postalCode);
-  const [phoneNumber, setPhoneNumber] = useState(shippingInfo.phoneNumber);
-  const [country, setCountry] = useState(shippingInfo.county);
+  const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
+  const [country, setCountry] = useState(shippingInfo.country);
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    dispatch(
-      saveShippingInfo({ address, city, postalCode, phoneNumber, country })
-    );
-    history.push("/order/confirm");
+    dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, country }));
+    history.push("/confirm");
   };
 
   return (
     <Fragment>
       <MetaData title={"Shipping Info"} />
+
       <CheckoutSteps shipping />
+
       <div className="row wrapper">
         <div className="col-10 col-lg-5">
           <form className="shadow-lg" onSubmit={submitHandler}>
@@ -66,8 +67,8 @@ const Shipping = ({ history }) => {
                 type="phone"
                 id="phone_field"
                 className="form-control"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                value={phoneNo}
+                onChange={(e) => setPhoneNo(e.target.value)}
                 required
               />
             </div>

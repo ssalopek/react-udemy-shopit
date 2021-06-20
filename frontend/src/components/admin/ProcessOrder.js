@@ -82,7 +82,7 @@ const ProcessOrder = ({ match }) => {
                     <b>Name:</b> {user && user.name}
                   </p>
                   <p>
-                    <b>Phone:</b> {shippingInfo && shippingInfo.phoneNumber}
+                    <b>Phone:</b> {shippingInfo && shippingInfo.phoneNo}
                   </p>
                   <p className="mb-4">
                     <b>Address:</b>

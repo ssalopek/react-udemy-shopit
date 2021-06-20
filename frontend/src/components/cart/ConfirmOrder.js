@@ -41,7 +41,7 @@ const ConfirmOrder = ({ history }) => {
             <b>Name:</b> {user && user.name}
           </p>
           <p>
-            <b>Phone:</b> {shippingInfo.phoneNumber}
+            <b>Phone:</b> {shippingInfo.phoneNo}
           </p>
           <p className="mb-4">
             <b>Address:</b>{" "}

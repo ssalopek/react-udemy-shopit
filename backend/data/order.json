@@ -15,7 +15,7 @@
     "shippingInfo": {
         "address": "Radica Stjepana",
         "city": "Osijek",
-        "phoneNumber": "0981234567",
+        "phoneNo": "0981234567",
         "postalCode": "4200",
         "country": "Croatia"
     },
