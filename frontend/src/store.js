@@ -19,6 +19,7 @@ import {
   newOrderReducer,
   myOrdersReducer,
   orderDetailsReducer,
+  allOrdersReducer
 } from "./reducers/orderReducers";
 
 const reducer = combineReducers({
@@ -33,7 +34,8 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   newReview: newReviewReducer,
   newProduct: newProductReducer,
-  product: productReducer
+  product: productReducer,
+  allOrders: allOrdersReducer
 });
 
 //contains all data I want to put into the state, before loading application
