@@ -2,7 +2,7 @@
 
 This project was created with React [COURSE](https://www.udemy.com/course/mern-stack-ecommerce-site-using-react-redux-nodejs/ "course") 
 
-###  [Check app here (soon available)](LINK HERE)
+###  [Check app here](https://ss-shopit.herokuapp.com/)
 
 ### USED TOOLS:
 
@@ -13,8 +13,6 @@ This project was created with React [COURSE](https://www.udemy.com/course/mern-s
 **Redux** - state managment
 
 ### Implemented features
-+ React router and routing
-+ React forms
 + Pagination, filter, search components
 + User Authentication and Authorization:
  + Email Sign In/Sign Up
@@ -23,9 +21,10 @@ This project was created with React [COURSE](https://www.udemy.com/course/mern-s
  + Checkout `->` Payment `->` Confirm order
 + Stripe Payments
 + Create and list product reviews
-
-### TODO:
 + Admin permissions
   + CRUD operations on products
 + Deploying to production
   + Heroku: Cloud Application Platform
+
+### TODO:
++ Fix payment not working in LIVE version
