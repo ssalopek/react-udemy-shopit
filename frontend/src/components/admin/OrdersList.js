@@ -23,9 +23,7 @@ const OrdersList = ({ history }) => {
       alert.error(error);
       dispatch(clearErrors());
     }
-
   }, [dispatch, alert, error, history]);
-
 
   const setOrders = () => {
     const data = {
@@ -78,9 +76,7 @@ const OrdersList = ({ history }) => {
             >
               <i className="fa fa-eye"></i>
             </Link>
-            <button
-              className="btn btn-danger py-1 px-2 ml-2"
-            >
+            <button className="btn btn-danger py-1 px-2 ml-2">
               <i className="fa fa-trash"></i>
             </button>
           </Fragment>
