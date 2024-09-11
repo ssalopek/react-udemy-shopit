@@ -2,8 +2,6 @@
 
 This project was created with React [COURSE](https://www.udemy.com/course/mern-stack-ecommerce-site-using-react-redux-nodejs/ "course") 
 
-###  [Check app here](https://ss-shopit.herokuapp.com/)
-
 ### USED TOOLS:
 
 **React** - frontend <br />
